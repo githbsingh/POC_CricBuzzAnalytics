@@ -1,5 +1,6 @@
 import requests
 import csv
+from google.cloud import storage
 
 url = 'https://cricbuzz-cricket.p.rapidapi.com/stats/v1/rankings/batsmen'
 headers = {
@@ -11,7 +12,8 @@ params = {
 }
 
 bucket_name = 'blt-cricbuzz-data'
-destination_blob = "data/" + file_name
+source_file_name = 'batsmen_rankings.csv'
+destination_blob_name = "data/" + source_file_name
 response = requests.get(url, headers=headers, params=params)
 
 if response.status_code == 200:
